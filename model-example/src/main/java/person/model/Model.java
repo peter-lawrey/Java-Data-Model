@@ -17,10 +17,11 @@
 package person.model;
 
 import person.attributes.*;
+import vanilla.java.datamodel.CodeGenerator;
 import vanilla.java.datamodel.annotations.Immutable;
 import vanilla.java.datamodel.annotations.Wrapper;
 
-public interface Model {
+public class Model {
     @Wrapper
     class PersonId {
         int value;
@@ -38,5 +39,11 @@ public interface Model {
         PhoneNumber homePhone;
         PhoneNumber mobilePhone;
         PhoneNumber workPhone;
+    }
+
+    public static void main(String... args) {
+        CodeGenerator dm = new CodeGenerator(Model.class);
+        dm.addGettersSetters(true);
+        System.out.println(dm.simplifyModel());
     }
 }
